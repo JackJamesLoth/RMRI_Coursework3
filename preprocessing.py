@@ -42,7 +42,6 @@ def preprocess(model_module):
                                                                                       segment_idx=i))
                     np.save(feature_filename, spec_segment)
 
-
 def main():
     aparser = argparse.ArgumentParser()
     aparser.add_argument('-m',
