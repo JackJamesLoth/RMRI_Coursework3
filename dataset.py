@@ -10,7 +10,7 @@ class InstrTagDataset(Dataset):
         self.X = load_features(extended_x, model_name, dataset_mean)
 
     def __getitem__(self, index):
-        return self.X[0]
+        return self.X[index], self.y[index]
         
     def __len__(self):
         return self.X.shape[0]

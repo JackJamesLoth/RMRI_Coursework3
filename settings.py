@@ -1,4 +1,4 @@
-IRMAS_TRAIN_DATA_PATH = 'data/train'
+IRMAS_TRAIN_DATA_PATH = 'D:/School/PhD/Modules/RMRI/GroupProject/dataset/train'
 IRMAS_TEST_DATA_PATH = 'data/test'
 IRMAS_TRAIN_FEATURE_BASEPATH = 'features/train'
 IRMAS_TEST_FEATURE_BASEPATH = 'features/test'

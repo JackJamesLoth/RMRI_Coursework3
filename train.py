@@ -11,12 +11,26 @@ from utils import *
 from dataset import *
 from models.singlelayer import SingleLayer
 
-def train(model, optimizer, loss):
+def train(model, optimizer, loss_fn, train, device):
     print('training...')
 
     # Training loop
     for i in range(MAX_EPOCH_NUM):
         print('Epoch {}/{}'.format(i+1, MAX_EPOCH_NUM))
+
+        for train_data in train:
+
+            input = train_data[0].float().to(device)
+            labels = train_data[1].float().to(device)
+
+            train_input = torch.transpose(input, 0,1)
+            #train_labels = torch.transpose(labels, 1,2)
+
+            optimizer.zero_grad()
+            output = model(train_input)
+            loss = loss_fn(output, train_labels)
+
+            
 
 def main():
 
@@ -58,7 +72,7 @@ def main():
     loss = nn.CrossEntropyLoss()
 
     # Begin training
-    #train(model, optimizer, loss)
+    train(model, optimizer, loss, dataloader_train, dev)
 
 if __name__ == "__main__":
     main()

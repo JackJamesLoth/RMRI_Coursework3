@@ -22,7 +22,7 @@ class SingleLayer(nn.Module):
 
   def forward(self, x):
 
-    # run inut thruogh each layer
+    # run input thruogh each layer
     for i in range(len(self.layers)):
       x = self.layers[0](x)
     
