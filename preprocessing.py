@@ -6,8 +6,6 @@ import librosa
 
 from settings import *
 
-N_MEL_BANDS = 96
-SEGMENT_DUR = 128
 
 def compute_spectrograms(filename):
     out_rate = 12000

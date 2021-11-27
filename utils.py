@@ -1,5 +1,8 @@
 import torch
 import numpy as np
+import os
+
+from settings import *
 
 def getDevice():
       # torch.cuda.is_available() checks and returns a Boolean True if a GPU is available, else it'll return False
@@ -15,31 +18,38 @@ def getDevice():
 
     return dev
 
-def _load_features(self, filenames):
+def to_categorical(y, num_classes):
+    """ 1-hot encodes a tensor """
+    return np.eye(num_classes, dtype='uint8')[y]
+
+def load_features(filenames, model_name, dataset_mean):
     features = list()
     for filename in filenames:
-        feature_filename = os.path.join(IRMAS_TRAIN_FEATURE_BASEPATH, self.model_module.BASE_NAME,
+        feature_filename = os.path.join(IRMAS_TRAIN_FEATURE_BASEPATH, model_name,
                                         "{}.npy".format(filename))
         feature = np.load(feature_filename)
-        feature -= self.dataset_mean
+        feature -= dataset_mean
         features.append(feature)
 
-    if K.image_dim_ordering() == 'th':
-        features = np.array(features).reshape(-1, 1, self.model_module.N_MEL_BANDS, self.model_module.SEGMENT_DUR)
-    else:
-        features = np.array(features).reshape(-1, self.model_module.N_MEL_BANDS, self.model_module.SEGMENT_DUR, 1)
+    #if K.image_dim_ordering() == 'th':
+    #    features = np.array(features).reshape(-1, 1, N_MEL_BANDS, SEGMENT_DUR)
+    #else:
+    #    features = np.array(features).reshape(-1, N_MEL_BANDS, SEGMENT_DUR, 1)
+
+    features = np.array(features).reshape(-1, 1, N_MEL_BANDS, SEGMENT_DUR)
+    
     return features
 
-def _get_extended_data(self, inputs, targets):
+def get_extended_data(inputs, targets):
     extended_inputs = list()
-    for i in range(0, self.model_module.N_SEGMENTS_PER_TRAINING_FILE):
+    for i in range(0, N_SEGMENTS_PER_TRAINING_FILE):
         extended_inputs.extend(['_'.join(list(x)) for x in zip(inputs, [str(i)]*len(inputs))])
     extended_inputs = np.array(extended_inputs)
     extended_targets = np.tile(np.array(targets).reshape(-1),
-                                self.model_module.N_SEGMENTS_PER_TRAINING_FILE).reshape(-1, IRMAS_N_CLASSES)
+                                N_SEGMENTS_PER_TRAINING_FILE).reshape(-1, IRMAS_N_CLASSES)
     return extended_inputs, extended_targets
 
-def _batch_generator(self, inputs, targets):
+def batch_generator(self, inputs, targets):
     assert len(inputs) == len(targets)
     while True:
         indices = np.arange(len(inputs))
@@ -50,7 +60,3 @@ def _batch_generator(self, inputs, targets):
                 yield inputs[excerpt], targets[excerpt]
             else:
                 yield self._load_features(inputs[excerpt]), targets[excerpt]
-
-def to_categorical(y, num_classes):
-    """ 1-hot encodes a tensor """
-    return np.eye(num_classes, dtype='uint8')[y]

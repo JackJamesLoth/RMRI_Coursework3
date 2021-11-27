@@ -30,19 +30,21 @@ def main():
                          help='-m model to train')
     args = aparser.parse_args()
 
-    # Create dataset
+    # Load data
     dataset = pd.read_csv(IRMAS_TRAINING_META_PATH, names=["filename", "class_id"])
-    X_train, X_val, y_train, y_val = train_test_split(list(dataset.filename),
-                                                      to_categorical(np.array(dataset.class_id, dtype=int), 9),
-                                                      test_size=VALIDATION_SPLIT)
 
-    print(X_train)
-    print(X_val)
-    
-    #dataset = InstrTagDataset()
+    # Create test/val split
+    X_train, X_val, y_train, y_val = train_test_split(list(dataset.filename),
+                                                    to_categorical(np.array(dataset.class_id, dtype=int), IRMAS_N_CLASSES),
+                                                    test_size=VALIDATION_SPLIT)
+
+    # Create datasets
+    dataset_train = InstrTagDataset(X_train, y_train, args.model)
+    dataset_val = InstrTagDataset(X_val, y_val, args.model)
 
     # Create dataloaders
-    #dataloader = Dataloader(dataset, batch_size = BATCH_SIZE, num_workers=2, persistent_workers=True)
+    dataloader_train = DataLoader(dataset_train, batch_size = BATCH_SIZE, num_workers=2, persistent_workers=True)
+    dataloader_val = DataLoader(dataset_val, batch_size = BATCH_SIZE, num_workers=2, persistent_workers=True)
 
     # Create model
     model = SingleLayer()
