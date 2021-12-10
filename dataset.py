@@ -10,7 +10,7 @@ class InstrTagDataset(Dataset):
         self.X = load_features(extended_x, model_name, dataset_mean)
 
     def __getitem__(self, index):
-        return self.X[index], self.y[index]
+        return self.X[index], np.argmax(self.y[index], axis=0)
         
     def __len__(self):
         return self.X.shape[0]

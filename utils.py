@@ -1,8 +1,19 @@
 import torch
+import torch.nn as nn
 import numpy as np
 import os
 
 from settings import *
+
+# Custom loss function
+class CategoricalCrossEntropy(nn.Module):
+    def __init__( self):
+        super().__init__()
+
+    def forward( self, model_out, target):
+
+        loss = nn.NLLLoss()(torch.log(model_out), target)  
+        return loss
 
 def getDevice():
       # torch.cuda.is_available() checks and returns a Boolean True if a GPU is available, else it'll return False
