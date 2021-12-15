@@ -1,0 +1,64 @@
+micro average strategy, threshold 0.25
+precision:      0.17494620638039104
+recall: 0.38031319910514544
+f1:     0.23965141612200436
+macro average strategy, threshold 0.25
+precision:      0.15907499941844105
+recall: 0.3403032894103462
+f1:     0.1904124111669489
+micro average strategy, threshold 0.3
+precision:      0.17663181402903258
+recall: 0.35387431360585725
+f1:     0.23564463705308777
+macro average strategy, threshold 0.3
+precision:      0.15847466813501343
+recall: 0.31463903654115527
+f1:     0.18474825931934147
+micro average strategy, threshold 0.35
+precision:      0.1797802685606481
+recall: 0.32946918852959123
+f1:     0.2326249282021827
+macro average strategy, threshold 0.35
+precision:      0.1606426782518158
+recall: 0.2873878473392215
+f1:     0.18032190043398238
+micro average strategy, threshold 0.4
+precision:      0.1819066147859922
+recall: 0.3042505592841163
+f1:     0.22768434670116428
+macro average strategy, threshold 0.4
+precision:      0.16100475177956278
+recall: 0.2648355093912112
+f1:     0.1745454981468083
+micro average strategy, threshold 0.45
+precision:      0.18467085058085192
+recall: 0.2812690665039658
+f1:     0.22295663388682896
+macro average strategy, threshold 0.45
+precision:      0.16192560709896758
+recall: 0.24344623870849863
+f1:     0.16914272644920192
+micro average strategy, threshold 0.5
+precision:      0.18632727272727273
+recall: 0.2605247101891397
+f1:     0.21726594301221167
+macro average strategy, threshold 0.5
+precision:      0.16271585131495495
+recall: 0.22351205478205385
+f1:     0.1628131089254761
+micro average strategy, threshold 0.55
+precision:      0.1880178457616316
+recall: 0.23998372991661582
+f1:     0.21084606450460108
+macro average strategy, threshold 0.55
+precision:      0.1646202092206771
+recall: 0.20684361473687563
+f1:     0.15694186255709555
+micro average strategy, threshold 0.6
+precision:      0.19165942658557775
+recall: 0.22432377465934514
+f1:     0.20670914542728636
+macro average strategy, threshold 0.6
+precision:      0.16060025719917695
+recall: 0.191468818653113
+f1:     0.1513758697738615

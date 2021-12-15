@@ -54,7 +54,7 @@ def train(model, optimizer, scaler, loss_fn, train, device):
 
             # Calculate average
             old_avg = avg
-            avg = old_avg + ((loss - old_avg) / j)
+            avg = old_avg + ((loss.item() - old_avg) / j)
             j += 1
 
         # save loss
@@ -115,7 +115,7 @@ def main():
 
     # Load model
     if LOAD_MODEL:
-        print('loading model')
+        print('Loading model')
         checkpoint = torch.load(LOAD_MODEL_PATH)
         model.load_state_dict(checkpoint['model_state_dict'])
         optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
