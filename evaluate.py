@@ -1,15 +1,3 @@
-# Need to create 1D array of predicted values and actual values (easy to get from dataloader and model output)
-# Use sklearn metrics
-# Compute metrics for different threshold values, getting rid of unconfident values
-# Sum together predictions for same file, average and make final prediction based on that
-# s1 and s2 are different ways of summing predictions together
-
-# Loads target values into binarized array to indicate correct class for each batch
-# For each batch, it predicts the class using the model output (batch is the features from one specific file)
-# This is stored in a single prediction array
-# Each of these arrays will be size [N,11] (since I think there are 11 classes total)
-
-
 import argparse
 import importlib
 import os
