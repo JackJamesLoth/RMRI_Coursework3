@@ -29,7 +29,8 @@ def compute_spectrograms(filename):
 
 # Go through all train/test files, compute spectrogram and save in features dir
 def preprocess(model_module):
-    for data_path, feature_path in [(IRMAS_TEST_DATA_PATH, IRMAS_TEST_FEATURE_BASEPATH)]:
+    for data_path, feature_path in [(IRMAS_TRAIN_DATA_PATH, IRMAS_TRAIN_FEATURE_BASEPATH),
+                                    (IRMAS_TEST_DATA_PATH, IRMAS_TEST_FEATURE_BASEPATH)]:
         for root, dirs, files in os.walk(data_path):
             files = [filename for filename in files if filename.endswith('.wav')]
             for filename in files:
